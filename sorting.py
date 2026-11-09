@@ -21,22 +21,26 @@ def bubble(a):
 # 2 cортировка вставками с  insert
 def insertion(a):
     count = 0
+    res = []
 
-    for i in range(1, len(a)):
-        key = a.pop(i)
-        j = i - 1
+    for key in a:
+        left = 0
+        right = len(res)
 
-        while j >= 0:
+        while left < right:
+            mid = (left + right) // 2
             count += 1
-            if a[j] > key:
-                j -= 1
+
+            if res[mid] <= key:
+                left = mid + 1
             else:
-                break
+                right = mid
+                
+        res.insert(left, key)
 
-        a.insert(j + 1, key)
+    a[:] = res
     return count
-
-
+    
 # 3 Хоара с двумя кортежами
 def hoare(a):
     if len(a) <= 1:
